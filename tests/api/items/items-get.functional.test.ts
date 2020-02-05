@@ -1,19 +1,19 @@
 import { expect } from 'chai';
 import 'mocha';
 import axios from 'axios';
-import { truncateTables } from '../truncate';
+import { truncateTables } from '../../truncate';
 import { beforeEach } from 'mocha';
-import { Item } from '../../src/models/Item';
+import { Item } from '../../../src/models/Item';
 import { getManager, Repository, Connection } from 'typeorm';
 
-describe('src/controllers/item.ts', () => {
+describe('src/controllers/item.ts getItems', () => {
     let pdb: Connection;
     beforeEach(async () => {
         pdb = await truncateTables(['item']);
     });
 
     afterEach(async () => {
-        pdb.close();
+        await pdb.close();
     });
 
     it('returns empty array if no items', async () => {
