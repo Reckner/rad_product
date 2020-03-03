@@ -8,6 +8,7 @@ import { request, summary, responsesAll, tagsAll } from 'koa-swagger-decorator';
     400: { description: 'bad request' },
     401: { description: 'unauthorized, missing/wrong jwt token' },
 })
+
 @tagsAll(['Item'])
 export default class ItemController {
     @request('get', '/items')
@@ -39,7 +40,7 @@ export default class ItemController {
         // load an item with specific id
         const item: Item | undefined = await itemRepository.findOne(id);
 
-        // return OK status code and loaded items array
+        // return OK status code and loaded item
         ctx.status = 200;
         item ? (ctx.body = item) : (ctx.body = null);
     }

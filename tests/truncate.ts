@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { connection } from '../src/db/connection';
 
 export async function truncateTables(tablesArray: string[]) {
@@ -9,6 +8,8 @@ export async function truncateTables(tablesArray: string[]) {
     }
 
     const pdb = await connection();
-    await pdb.query(`TRUNCATE TABLE ${tablesArray[0]}`);
+    tablesArray.forEach(async table => {
+        await pdb.query(`TRUNCATE TABLE ${table}`);
+    });
     return pdb;
 }

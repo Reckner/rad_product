@@ -4,7 +4,7 @@
     "description": "",
     "main": "./index.ts",
     "scripts": {
-        "start": "node node_modules/nodemon/.bin/nodemon --watch . --exec 'ts-node' ./index.ts",
+        "start": "node node_modules/.bin/nodemon --watch . --exec 'ts-node' ./index.ts",
         "test:functional": "docker exec -it rad_product-test bash -c 'node_modules/.bin/mocha --require ts-node/register ./tests/**/*.functional.test.ts'",
         "test:functional:start": "docker-compose -f docker-compose.test.yml up -d",
         "test:functional:stop": "docker stop rad_product-test rad_db-test"

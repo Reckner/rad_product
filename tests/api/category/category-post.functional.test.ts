@@ -3,26 +3,27 @@ import 'mocha';
 import axios from 'axios';
 import { truncateTables } from '../../truncate';
 import { beforeEach } from 'mocha';
-import { Item } from '../../../src/models/Item';
+import { Category } from '../../../src/models/Category';
 import { getManager, Repository, Connection } from 'typeorm';
+import { category } from '../../../src/controllers';
 
-describe('src/controllers/item.ts createItem', () => {
+describe('src/controllers/category.ts createCategory', () => {
     let pdb: Connection;
     beforeEach(async () => {
-        pdb = await truncateTables(['item']);
+        pdb = await truncateTables(['category']);
     });
 
     afterEach(async () => {
         await pdb.close();
     });
 
-    it("doesn't create new item, wrong request body", async () => {
-        const itemRepository: Repository<Item> = getManager().getRepository(
-            Item,
+    it("doesn't create new category, wrong request body", async () => {
+        const categoryRepository: Repository<Category> = getManager().getRepository(
+            Category,
         );
 
         try {
-            await axios.post('http://localhost:8081/item', {
+            await axios.post('http://localhost:8081/category', {
                 name: 'Test T-Shirt',
                 price: 50.0,
             });
